@@ -11,26 +11,30 @@ const availableBalance = document.getElementById('availableBalance');
 const activityList = document.getElementById('activityList');
 const logoutBtn = document.getElementById('logoutBtn');
 
+// Firebase Auth & Firestore (ensure these are initialized in firebase.js)
+const auth = firebase.auth();
+const db = firebase.firestore();
+
 // Check Authentication
 auth.onAuthStateChanged(async (user) => {
     if (user) {
-        // User is signed in
         try {
             // Get user data from Firestore
             const userDoc = await db.collection('users').doc(user.uid).get();
-            const userData = userDoc.data();
+            const userData = userDoc.data() || {};
 
             // Update UI with user data
-            userPhoto.src = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName)}&background=random`;
-            userName.textContent = user.displayName || userData.name;
-            userEmail.textContent = user.email;
+            userPhoto.src = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName || userData.name || 'User')}&background=random`;
+            userName.textContent = user.displayName || userData.name || 'User';
+            userEmail.textContent = user.email || '';
             userCoins.textContent = userData.coins || 0;
-            userBalance.textContent = `₹${(userData.coins / 10).toFixed(2)}`;
+            userBalance.textContent = `₹${((userData.coins || 0) / 10).toFixed(2)}`;
 
             // Update stats
             totalSpins.textContent = userData.totalSpins || 0;
             totalEarnings.textContent = `₹${((userData.totalEarnings || 0) / 10).toFixed(2)}`;
-            totalReferrals.textContent = userData.referrals || 0;
+            // If referrals is an array, use .length, else fallback to 0 or value
+            totalReferrals.textContent = Array.isArray(userData.referrals) ? userData.referrals.length : (userData.referrals || 0);
             availableBalance.textContent = `₹${((userData.coins || 0) / 10).toFixed(2)}`;
 
             // Load recent activity
@@ -41,7 +45,7 @@ auth.onAuthStateChanged(async (user) => {
         }
     } else {
         // User is signed out, redirect to login
-        window.location.href = '/index.html';
+        window.location.href = "index.html";
     }
 });
 
@@ -70,12 +74,12 @@ async function loadRecentActivity(userId) {
                     <span class="material-icons">${getActivityIcon(activity.type)}</span>
                 </div>
                 <div class="activity-details">
-                    <h4>${activity.title}</h4>
-                    <p>${activity.description}</p>
+                    <h4>${activity.title || ''}</h4>
+                    <p>${activity.description || ''}</p>
                     <small>${formatTimestamp(activity.timestamp)}</small>
                 </div>
                 <div class="activity-amount ${activity.amount >= 0 ? 'positive' : 'negative'}">
-                    ${activity.amount >= 0 ? '+' : ''}${activity.amount} coins
+                    ${activity.amount >= 0 ? '+' : ''}${activity.amount || 0} coins
                 </div>
             `;
             activityList.appendChild(activityElement);
@@ -98,7 +102,8 @@ function getActivityIcon(type) {
 
 function formatTimestamp(timestamp) {
     if (!timestamp) return '';
-    const date = timestamp.toDate();
+    // Firestore Timestamp object
+    const date = typeof timestamp.toDate === 'function' ? timestamp.toDate() : new Date(timestamp);
     return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
 }
 
@@ -106,9 +111,9 @@ function formatTimestamp(timestamp) {
 logoutBtn.addEventListener('click', async () => {
     try {
         await auth.signOut();
-        window.location.href = '/index.html';
+        window.location.href = "index.html";
     } catch (error) {
         console.error('Error signing out:', error);
         alert('Error signing out. Please try again.');
     }
-}); 
+});
