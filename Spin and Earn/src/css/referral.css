@@ -1,0 +1,246 @@
+/* Referral Content */
+.referral-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Referral Card */
+.referral-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 30px;
+    border-radius: 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.referral-info h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.referral-info p {
+    opacity: 0.9;
+    margin-bottom: 20px;
+}
+
+.referral-stats {
+    display: flex;
+    gap: 20px;
+}
+
+.stat {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat .material-icons {
+    font-size: 24px;
+}
+
+.stat h4 {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 5px;
+}
+
+.stat p {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.referral-code {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.referral-code h3 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.code-box {
+    background: #f5f6fa;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.code-box span {
+    font-size: 20px;
+    font-weight: 600;
+    color: #667eea;
+    letter-spacing: 1px;
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    color: #667eea;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+/* Share Options */
+.share-options {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.share-options h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.share-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.share-btn:hover {
+    transform: translateY(-2px);
+}
+
+.share-btn .material-icons {
+    font-size: 20px;
+}
+
+.share-btn.whatsapp {
+    background: #25D366;
+}
+
+.share-btn.telegram {
+    background: #0088cc;
+}
+
+.share-btn.facebook {
+    background: #1877f2;
+}
+
+.share-btn.twitter {
+    background: #1da1f2;
+}
+
+/* Referral History */
+.referral-history {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.referral-history h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.referrals {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.referral-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f5f6fa;
+    border-radius: 12px;
+}
+
+.referral-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.referral-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #667eea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.referral-details h4 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.referral-details p {
+    font-size: 14px;
+    color: #666;
+}
+
+.referral-status {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.referral-status.pending {
+    color: #f59e0b;
+}
+
+.referral-status.completed {
+    color: #10b981;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .referral-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .referral-stats {
+        justify-content: center;
+    }
+
+    .share-buttons {
+        grid-template-columns: 1fr;
+    }
+} 

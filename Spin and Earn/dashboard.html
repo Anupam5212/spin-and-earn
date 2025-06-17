@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Spin and Earn</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/dashboard.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>Spin & Earn</h2>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <span class="material-icons">dashboard</span>
+                    Dashboard
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="material-icons">casino</span>
+                    Spin Wheel
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="material-icons">account_balance_wallet</span>
+                    Wallet
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="material-icons">person</span>
+                    Profile
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="material-icons">history</span>
+                    History
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="material-icons">share</span>
+                    Refer & Earn
+                </a>
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <span class="material-icons">logout</span>
+                    Logout
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="user-info">
+                    <img id="userPhoto" src="" alt="Profile" class="profile-photo">
+                    <div class="user-details">
+                        <h3 id="userName">Loading...</h3>
+                        <p id="userEmail">Loading...</p>
+                    </div>
+                </div>
+                <div class="wallet-info">
+                    <div class="coins">
+                        <span class="material-icons">monetization_on</span>
+                        <span id="userCoins">0</span> Coins
+                    </div>
+                    <div class="balance">
+                        <span class="material-icons">account_balance_wallet</span>
+                        <span id="userBalance">₹0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="material-icons">casino</span>
+                        <h3>Total Spins</h3>
+                        <p id="totalSpins">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-icons">monetization_on</span>
+                        <h3>Total Earnings</h3>
+                        <p id="totalEarnings">₹0</p>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-icons">people</span>
+                        <h3>Referrals</h3>
+                        <p id="totalReferrals">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <span class="material-icons">account_balance_wallet</span>
+                        <h3>Available Balance</h3>
+                        <p id="availableBalance">₹0</p>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-list" id="activityList">
+                        <!-- Activities will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="src/js/firebase.js"></script>
+    <script src="src/js/dashboard.js"></script>
+</body>
+</html> 
